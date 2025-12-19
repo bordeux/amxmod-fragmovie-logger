@@ -1,6 +1,7 @@
 #include <amxmodx>
 #include <amxmisc>
 #include <fakemeta>
+#include <cstrike>
 
 #define PLUGIN "Fragmovie Logger"
 #define VERSION "1.0"
@@ -175,15 +176,16 @@ check_long_distance_headshot(killer, victim, const weapon[]) {
 }
 
 check_noscope_kill(killer, victim, const weapon[]) {
+    // Only check AWP and Scout
     if (!equal(weapon, "awp") && !equal(weapon, "scout"))
         return
 
-    // Check if player was scoped (FOV check)
-    new Float:fov
-    pev(killer, pev_fov, fov)
+    // Check if player was zoomed using CS module
+    // cs_get_user_zoom() returns: 0 = no zoom, 1 = first zoom, 2 = second zoom
+    new zoomLevel = cs_get_user_zoom(killer)
 
-    // Default FOV is 90, scoped AWP is 40 or 10, scoped Scout is 40 or 15
-    if (fov == 90.0) {
+    // If zoom level is 0 (not zoomed), it's a no-scope kill
+    if (zoomLevel == 0) {
         log_special_kill(killer, victim, weapon, "NO-SCOPE")
     }
 }

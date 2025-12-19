@@ -115,7 +115,7 @@ Example:
 
 - AMX Mod X 1.8.2 or higher
 - Counter-Strike 1.6
-- Modules: fakemeta
+- Modules: fakemeta, cstrike
 
 ## Version
 
