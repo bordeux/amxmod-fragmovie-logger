@@ -41,12 +41,12 @@ Each entry includes:
 ### Example Log Entries
 
 ```
-[2025-12-19 15:30:45] [de_dust2] [TRIPLE KILL] PlayerName - 3 kills in 4.2 seconds
-[2025-12-19 15:31:12] [de_dust2] [LONG DISTANCE HS] PlayerName killed EnemyName with awp from 2500 units
-[2025-12-19 15:32:03] [de_dust2] [NO-SCOPE] PlayerName killed EnemyName with awp
-[2025-12-19 15:33:25] [de_dust2] [JUMPSHOT HEADSHOT] PlayerName killed EnemyName with ak47
-[2025-12-19 15:34:20] [de_dust2] [ACE] PlayerName - killed entire enemy team (5 players)
-[2025-12-19 15:35:10] [de_dust2] [KNIFE KILL] PlayerName killed EnemyName with knife
+[2025-12-19 15:30:45] [de_dust2] [TRIPLE KILL] "PlayerName" - 3 kills in 4.2 seconds
+[2025-12-19 15:31:12] [de_dust2] [LONG DISTANCE HS] "PlayerName" killed "EnemyName" with awp from 2500 units
+[2025-12-19 15:32:03] [de_dust2] [NO-SCOPE] "PlayerName" killed "EnemyName" with awp
+[2025-12-19 15:33:25] [de_dust2] [JUMPSHOT HEADSHOT] "PlayerName" killed "EnemyName" with ak47
+[2025-12-19 15:34:20] [de_dust2] [ACE] "PlayerName" - killed entire enemy team (5 players)
+[2025-12-19 15:35:10] [de_dust2] [KNIFE KILL] "PlayerName" killed "EnemyName" with knife
 ```
 
 ## Configuration (CVars)
