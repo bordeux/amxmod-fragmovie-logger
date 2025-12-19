@@ -10,6 +10,7 @@ The plugin tracks and logs the following fragmovie-worthy moments:
 - **ACE** - Player kills entire enemy team (minimum 4 opponents)
 - **Long-distance headshots** - Headshot kills from far distances
 - **No-scope kills** - AWP/Scout kills without scoping
+- **Jumpshot kills** - Kills while jumping/in the air
 - **Knife kills** - All knife eliminations
 - **Grenade kills** - HE grenade eliminations
 
@@ -43,6 +44,7 @@ Each entry includes:
 [2025-12-19 15:30:45] [de_dust2] [TRIPLE KILL] PlayerName - 3 kills in 4.2 seconds
 [2025-12-19 15:31:12] [de_dust2] [LONG DISTANCE HS] PlayerName killed EnemyName with awp from 2500 units
 [2025-12-19 15:32:03] [de_dust2] [NO-SCOPE] PlayerName killed EnemyName with awp
+[2025-12-19 15:33:25] [de_dust2] [JUMPSHOT HEADSHOT] PlayerName killed EnemyName with ak47
 [2025-12-19 15:34:20] [de_dust2] [ACE] PlayerName - killed entire enemy team (5 players)
 [2025-12-19 15:35:10] [de_dust2] [KNIFE KILL] PlayerName killed EnemyName with knife
 ```
@@ -74,6 +76,7 @@ fml_min_enemy_team 4       // Minimum enemy team size for ACE (default: 4)
 fml_log_grenade 1          // Log grenade kills (default: 1)
 fml_log_knife 1            // Log knife kills (default: 1)
 fml_log_noscope 1          // Log AWP/Scout no-scope kills (default: 1)
+fml_log_jumpshot 1         // Log kills while jumping (default: 1)
 ```
 
 ## Usage with HLTV Demos
@@ -97,12 +100,14 @@ Players will see chat notifications for certain events:
 - Multi-kills (triple, quadra, penta)
 - Long-distance headshots (with distance)
 - No-scope kills
+- Jumpshot kills
 - ACE achievements
 
 Example:
 ```
 [FragMovie] PlayerName: TRIPLE KILL in 4.2 seconds!
 [FragMovie] PlayerName: Long distance headshot! (2500 units)
+[FragMovie] PlayerName: JUMPSHOT HEADSHOT!
 [FragMovie] PlayerName: ACE - killed entire enemy team (5 players)!
 ```
 

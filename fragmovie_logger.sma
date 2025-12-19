@@ -9,6 +9,9 @@
 #define MAX_PLAYERS 32
 #define LOG_FILE "fragmovie_moments.log"
 
+// Player flags
+#define FL_ONGROUND (1<<9)
+
 // Player kill tracking
 new g_iKillCount[MAX_PLAYERS + 1]
 new Float:g_fLastKillTime[MAX_PLAYERS + 1]
@@ -26,6 +29,7 @@ new g_pCvarMinDistance
 new g_pCvarLogGrenade
 new g_pCvarLogKnife
 new g_pCvarLogNoScope
+new g_pCvarLogJumpshot
 new g_pCvarLogAce
 new g_pCvarMinEnemyTeam
 
@@ -45,6 +49,7 @@ public plugin_init() {
     g_pCvarLogGrenade = register_cvar("fml_log_grenade", "1") // Log grenade kills
     g_pCvarLogKnife = register_cvar("fml_log_knife", "1") // Log knife kills
     g_pCvarLogNoScope = register_cvar("fml_log_noscope", "1") // Log AWP/Scout no-scopes
+    g_pCvarLogJumpshot = register_cvar("fml_log_jumpshot", "1") // Log kills while jumping
     g_pCvarLogAce = register_cvar("fml_log_ace", "1") // Log ACE rounds
     g_pCvarMinEnemyTeam = register_cvar("fml_min_enemy_team", "4") // Minimum enemy team size for ACE
 }
@@ -102,6 +107,21 @@ public event_DeathMsg() {
 
     if (get_pcvar_num(g_pCvarLogNoScope)) {
         check_noscope_kill(killer, victim, weapon)
+    }
+
+    // Check for jumpshot (kill while in the air)
+    if (get_pcvar_num(g_pCvarLogJumpshot)) {
+        new flags = pev(killer, pev_flags)
+        // FL_ONGROUND = 512 - if player doesn't have this flag, they're in the air
+        if (!(flags & FL_ONGROUND)) {
+            new killTypeStr[32]
+            if (headshot) {
+                killTypeStr = "JUMPSHOT HEADSHOT"
+            } else {
+                killTypeStr = "JUMPSHOT"
+            }
+            log_special_kill(killer, victim, weapon, killTypeStr)
+        }
     }
 }
 
@@ -210,8 +230,8 @@ log_special_kill(killer, victim, const weapon[], const killType[]) {
     write_file(logPath, logLine)
 
     // Print to server for certain types
-    if (equal(killType, "NO-SCOPE")) {
-        client_print(0, print_chat, "[FragMovie] %s: %s kill!", killerName, killType)
+    if (equal(killType, "NO-SCOPE") || equal(killType, "JUMPSHOT") || equal(killType, "JUMPSHOT HEADSHOT")) {
+        client_print(0, print_chat, "[FragMovie] %s: %s!", killerName, killType)
     }
 }
 
