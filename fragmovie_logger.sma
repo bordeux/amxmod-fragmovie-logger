@@ -169,9 +169,6 @@ check_long_distance_headshot(killer, victim, const weapon[]) {
         format(logLine, charsmax(logLine), "[%s] [%s] [LONG DISTANCE HS] ^"%s^" killed ^"%s^" with %s from %.0f units",
             timestamp, mapName, killerName, victimName, weapon, distance)
         write_file(logPath, logLine)
-
-        // Print to killer's console
-        client_print(killer, print_console, "[FragMovie] Long distance headshot! (%.0f units)", distance)
     }
 }
 
@@ -211,9 +208,6 @@ log_multikill(killer, killCount, Float:timeSpan) {
     format(logLine, charsmax(logLine), "[%s] [%s] [%s] ^"%s^" - %d kills in %.1f seconds",
         timestamp, mapName, killType, killerName, killCount, timeSpan)
     write_file(logPath, logLine)
-
-    // Print to killer's console
-    client_print(killer, print_console, "[FragMovie] %s in %.1f seconds!", killType, timeSpan)
 }
 
 log_special_kill(killer, victim, const weapon[], const killType[]) {
@@ -230,11 +224,6 @@ log_special_kill(killer, victim, const weapon[], const killType[]) {
     format(logLine, charsmax(logLine), "[%s] [%s] [%s] ^"%s^" killed ^"%s^" with %s",
         timestamp, mapName, killType, killerName, victimName, weapon)
     write_file(logPath, logLine)
-
-    // Print to killer's console for certain types
-    if (equal(killType, "NO-SCOPE") || equal(killType, "JUMPSHOT") || equal(killType, "JUMPSHOT HEADSHOT")) {
-        client_print(killer, print_console, "[FragMovie] %s!", killType)
-    }
 }
 
 bool:is_grenade_weapon(const weapon[]) {
@@ -327,7 +316,4 @@ log_ace(player, killCount) {
     format(logLine, charsmax(logLine), "[%s] [%s] [ACE] ^"%s^" - killed entire enemy team (%d players)",
         timestamp, mapName, playerName, killCount)
     write_file(logPath, logLine)
-
-    // Print to player's console
-    client_print(player, print_console, "[FragMovie] ACE - killed entire enemy team (%d players)!", killCount)
 }
