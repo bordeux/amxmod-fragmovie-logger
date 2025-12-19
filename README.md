@@ -96,19 +96,21 @@ fml_log_jumpshot 1         // Log kills while jumping (default: 1)
 
 ## In-Game Notifications
 
-Players will see chat notifications for certain events:
+Players will receive console notifications for certain events:
 - Multi-kills (triple, quadra, penta)
 - Long-distance headshots (with distance)
 - No-scope kills
 - Jumpshot kills
 - ACE achievements
 
-Example:
+Notifications are sent directly to the player's console (not chat) to avoid cluttering the game chat.
+
+Example console output:
 ```
-[FragMovie] PlayerName: TRIPLE KILL in 4.2 seconds!
-[FragMovie] PlayerName: Long distance headshot! (2500 units)
-[FragMovie] PlayerName: JUMPSHOT HEADSHOT!
-[FragMovie] PlayerName: ACE - killed entire enemy team (5 players)!
+[FragMovie] TRIPLE KILL in 4.2 seconds!
+[FragMovie] Long distance headshot! (2500 units)
+[FragMovie] JUMPSHOT HEADSHOT!
+[FragMovie] ACE - killed entire enemy team (5 players)!
 ```
 
 ## Requirements
