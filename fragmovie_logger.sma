@@ -166,7 +166,7 @@ check_long_distance_headshot(killer, victim, const weapon[]) {
         format(logPath, charsmax(logPath), "%s/%s", logPath, LOG_FILE)
         get_time("%Y-%m-%d %H:%M:%S", timestamp, charsmax(timestamp))
 
-        format(logLine, charsmax(logLine), "[%s] [%s] [LONG DISTANCE HS] \"%s\" killed \"%s\" with %s from %.0f units",
+        format(logLine, charsmax(logLine), "[%s] [%s] [LONG DISTANCE HS] %s killed %s with %s from %.0f units",
             timestamp, mapName, killerName, victimName, weapon, distance)
         write_file(logPath, logLine)
 
@@ -208,7 +208,7 @@ log_multikill(killer, killCount, Float:timeSpan) {
         default: format(killType, charsmax(killType), "%d-KILL", killCount)
     }
 
-    format(logLine, charsmax(logLine), "[%s] [%s] [%s] \"%s\" - %d kills in %.1f seconds",
+    format(logLine, charsmax(logLine), "[%s] [%s] [%s] %s - %d kills in %.1f seconds",
         timestamp, mapName, killType, killerName, killCount, timeSpan)
     write_file(logPath, logLine)
 
@@ -227,7 +227,7 @@ log_special_kill(killer, victim, const weapon[], const killType[]) {
     format(logPath, charsmax(logPath), "%s/%s", logPath, LOG_FILE)
     get_time("%Y-%m-%d %H:%M:%S", timestamp, charsmax(timestamp))
 
-    format(logLine, charsmax(logLine), "[%s] [%s] [%s] \"%s\" killed \"%s\" with %s",
+    format(logLine, charsmax(logLine), "[%s] [%s] [%s] %s killed %s with %s",
         timestamp, mapName, killType, killerName, victimName, weapon)
     write_file(logPath, logLine)
 
@@ -324,7 +324,7 @@ log_ace(player, killCount) {
     format(logPath, charsmax(logPath), "%s/%s", logPath, LOG_FILE)
     get_time("%Y-%m-%d %H:%M:%S", timestamp, charsmax(timestamp))
 
-    format(logLine, charsmax(logLine), "[%s] [%s] [ACE] \"%s\" - killed entire enemy team (%d players)",
+    format(logLine, charsmax(logLine), "[%s] [%s] [ACE] %s - killed entire enemy team (%d players)",
         timestamp, mapName, playerName, killCount)
     write_file(logPath, logLine)
 
